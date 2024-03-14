@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+  }
+  
+  .connectButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+
+  }
+
+  .price table {
+   
+      width: 50%;
+      border-collapse: collapse;
+   
+    }
+  
+.price td {
+      text-align: center;
+      padding: 10px;
+      border: 1px solid #dddddd;
+    }
+  
+  
+  .connected {
+    display: flex;
+    align-items: center;
+    border: none;
+    /* padding: 8px 16px; */
+    text-align: center;
+  }
+  .linenear{
+    display: flex;
+    align-items: center;
+    border: none;
+    /* padding: 8px 16px; */
+    text-align: center;
+  }
+  .connected p {
+    margin-right: 16px;
+    font-size: 15px;
+    font-style: italic;
+
+  }
