@@ -29,20 +29,24 @@ export default function Home() {
 
         }
       `}</style>
-        </div>        
-        <h1>TC SCAN LICENSE:</h1> 
-         <LoadLicenseScan/>
-         <h1>TC SWAP LICENSE:</h1> 
-        <LoadLicense/>
-        <h1>BUY SCAN + SWAP BOT :</h1> 
-        <LoadLicenseCombo/>
-        <h1>BUY ETHER SWAP PRO:</h1>
+        </div>  
+        <div className='font-normal text-base'>
+        <div className='border-t border-gray-300 mx-auto w-full m-5'></div>
+        <h1 className='font-medium text-xl'>ETHER SWAP PRO LICENSE:</h1>
         <BuySwapEthPro/>
-        <h1>BUY ETHER SCAN PRO:</h1>
+        <h1 className='font-medium text-xl'>ETHER SCAN PRO LICENSE:</h1>
         <BuyScanEthPro/>
-        <h1>BUY COMBO ETHER SCAN PRO + ETHER SWAP PRO:</h1>
-        <BuyComboEtherPro/>
-         <h1>Tools: </h1>
+        <h1 className='font-medium text-xl'>BUY COMBO ETHER SCAN PRO + ETHER SWAP PRO:</h1>
+        <BuyComboEtherPro/>      
+        <div className='border-t border-blue-700 mx-auto w-full mb-3'></div>
+        <h1 className='font-medium text-xl'>TC SCAN LICENSE:</h1> 
+         <LoadLicenseScan/>
+         <h1 className='font-medium text-xl'>TC SWAP LICENSE:</h1> 
+        <LoadLicense/>
+        <h1 className='font-medium text-xl'>BUY TC SCAN + SWAP BOT:</h1> 
+        <LoadLicenseCombo/>
+        <div className='border-t border-blue-700 mx-auto w-full mb-3'></div>
+        <h1 className='font-medium text-xl'>Tools: </h1>
          <Tools />
          <div className="footer-line"><style jsx>{`
         .footer-line {
@@ -53,6 +57,7 @@ export default function Home() {
 
         }
       `}</style></div>
+      </div>
         <p>
           Download Bots on{' '}
           <a href="https://drive.google.com/drive/folders/1jKJeeRnqAKy1paZShIFgNKPlfSraxKrb">Google Driver</a>, Contact Us on  {' '}
