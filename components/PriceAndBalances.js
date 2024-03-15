@@ -36,7 +36,6 @@ function PriceAndBalances () {
     
         fetchBalance();
       }, [provider,walletAddress,reloadTotal]);
-
       return (
         
             <table>

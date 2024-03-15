@@ -17,6 +17,9 @@ function PageConfig() {
   const [loading3, setLoading3] = useState(false);
   const [loading4, setLoading4] = useState(false);
   const [loading5, setLoading5] = useState(false);
+  const [loading6, setLoading6] = useState(false);
+  const [loading7, setLoading7] = useState(false);
+
   const [vip, setVip] = useState('VIP1');
   const [input1, setInput1] = useState(['']);
   const [input2, setInput2] = useState(['']);
@@ -29,6 +32,11 @@ function PageConfig() {
   const [input9, setInput9] = useState(['']);
   const [input10, setInput10] = useState(['']);
   const [input11, setInput11] = useState(['']);
+  const [input12, setInput12] = useState(['']);
+  const [input13, setInput13] = useState(['']);
+  const [input14, setInput14] = useState(['']);
+  const [input15, setInput15] = useState(['']);
+
   const [balanceBNB, setBlanceBNB] = useState(0);
 
 
@@ -50,7 +58,8 @@ function PageConfig() {
           setHasRoleWithDraw(true)} else { setHasRoleWithDraw(false)}
         
         setWithdrawEnable(await addressContract.withdrawEnable());
-        setBlanceBNB(await provider.getBalance('0xE52564b0CC7a9541653B72b4ca6CcbA5e7B50618'))
+        setBlanceBNB(await provider.getBalance('0x674ADA902F96681cFA76dEf12221Ab20784A463E'))
+
       }
       else {
        return;
@@ -67,6 +76,9 @@ function PageConfig() {
     setLoading3(false);
     setLoading4(false);
     setLoading5(false);
+    setLoading6(false);
+    setLoading7(false);
+
 
   }
   function handleVipChanged(event) {
@@ -108,6 +120,12 @@ function PageConfig() {
         }else if(FT === "06") {
           setLoading5(true);
           transaction = await addressContract.withdrawBNBLimit(Math.round(input11*(10**18)).toString());
+        }else if(FT === "07") {
+          setLoading6(true);
+          transaction = await addressContract.setLicenseStoploss(input12,reTurnTimeStamp(input13));
+        }else if(FT === "08") {
+          setLoading7(true);
+          transaction = await addressContract.setLicenseStoploss(input14,reTurnTimeStamp(input15));
         }
         const result = await provider.waitForTransaction(transaction.hash)
         if(result.status ===1){
@@ -130,7 +148,7 @@ function PageConfig() {
   if(hasRoleAdmin){
 
     return (
-      <>
+      <div className='text-xs font-medium'>
       <div className="footer-line"><style jsx>{`
         .footer-line {
           width: 100%;
@@ -199,6 +217,30 @@ function PageConfig() {
 
         }
       `}</style></div>
+      <div className={styles.grid}>
+        {/* @todo 7 8 9 10 */}
+        <div className= {styles.card2}>
+            <p>Gia Hạn ETHER SWAP PRO</p>
+            <input type="text"  placeholder = "Nhập Địa Chỉ Ví" onChange={(e) => setInput12(e.target.value) }></input>
+            <input type="number"  placeholder = "Nhập Số Ngày Gia Hạn" onChange={(e) => setInput13(e.target.value) }></input>
+            <button type="button"  onClick ={() => setConfig("07")} disabled={loading6}>  {loading6? 'Đang Gia Hạn...' : 'Gia Hạn' }</button>
+        </div>
+        <div className= {styles.card2}>
+            <p>Gia Hạn ETHER SCAN PRO</p>
+            <input type="text"  placeholder = "Nhập Địa Chỉ Ví" onChange={(e) => setInput14(e.target.value) }></input>
+            <input type="number"  placeholder = "Nhập Số Ngày Gia Hạn" onChange={(e) => setInput15(e.target.value) }></input>
+            <button type="button"  onClick ={() => setConfig("08")} disabled={loading7}>  {loading7? 'Đang Gia Hạn...' : 'Gia Hạn' }</button>
+        </div>
+      </div>
+      <div className="footer-line"><style jsx>{`
+        .footer-line {
+          width: 100%;
+          height: 1px;
+          background-color: #ddd;
+          margin: 10px 0;
+
+        }
+      `}</style></div>
       <div className= {styles.grid}>
       <div>
         { !hasRoleWithDraw ? null :
@@ -212,7 +254,7 @@ function PageConfig() {
         </>}
       </div>
           </div>
-    </>
+    </div>
     );
   }else {
     return <p>You Don't have accesss this funtion</p>
