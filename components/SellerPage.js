@@ -12,6 +12,8 @@ function SellerPage() {
   const [loading, setLoading] = useState(false);
   const [hasRoleWithDraw, setHasRoleWithDraw] = useState(false)
   const [withdrawEnable, setWithdrawEnable] = useState(false)
+  const [exp, setExp] = useState([])
+
   useEffect(() => {
     async function fetchBalance() {
 
@@ -20,8 +22,22 @@ function SellerPage() {
         setWithdrawEnable(await addressContract.withdrawEnable());
         const money = await addressContract.functions.getMoneyPendingSeller(walletAddress)
         setBalanceMoney(money[0])
+        const expDate = []
         const cs =  await addressContract.functions.getTotalCustomer(walletAddress)
         setCustomer(cs[0])
+        customer.forEach(async (item, index) => {
+         const expScanPlus = await getExpTCSWAP(item)
+         const expswapPlus = await getExpTCSCAN(item)
+         const expSwapPro = await getExpSwapEthPro(item)
+         const expScanPro = await getExpScanEthPro(item)
+         expDate.push({"ScanPlus" : expScanPlus, 
+                        "SwapPlus" : expswapPlus,
+                      "ScanPro": expScanPro,
+                    "SwapPro" : expSwapPro})
+        })
+        setExp(expDate)
+        console.log(exp)
+
       }
       else {
        return;
@@ -66,6 +82,54 @@ function SellerPage() {
 
     }
   }
+  
+  async function getExpTCSCAN(wallet){
+    const exp = await addressContract.getExpScan(wallet)
+    const currentTimeStampInSeconds = Math.floor(new Date().getTime() / 1000)
+    let day = (ethers.utils.formatUnits(exp) - currentTimeStampInSeconds)/86400;
+    if(day <0){
+        day = 0;
+    }else{{
+        day = day.toFixed(1)
+    }}
+    return day
+  }
+
+  async function getExpTCSWAP(wallet){
+    const exp = await addressContract.getExpSwap(wallet)
+    const currentTimeStampInSeconds = Math.floor(new Date().getTime() / 1000)
+    let day = (ethers.utils.formatUnits(exp) - currentTimeStampInSeconds)/86400;
+    if(day <0){
+        day = 0;
+    }else{{
+        day = day.toFixed(1)
+    }}
+    return day
+  }
+
+  async function getExpSwapEthPro(wallet){
+    const exp = await addressContract.getExpSwapEthPro(wallet)
+    const currentTimeStampInSeconds = Math.floor(new Date().getTime() / 1000)
+    let day = (ethers.utils.formatUnits(exp) - currentTimeStampInSeconds)/86400;
+    if(day <0){
+        day = 0;
+    }else{{
+        day = day.toFixed(1)
+    }}
+    return day
+  }
+
+  async function getExpScanEthPro(wallet){
+    const exp = await addressContract.getExpScanEthPro(wallet)
+    const currentTimeStampInSeconds = Math.floor(new Date().getTime() / 1000)
+    let day = (ethers.utils.formatUnits(exp) - currentTimeStampInSeconds)/86400;
+    if(day <0){
+        day = 0;
+    }else{{
+        day = day.toFixed(1)
+    }}
+    return day
+  }
   if(hasRoleWithDraw){
     if(withdrawEnable){
      return (
@@ -84,15 +148,22 @@ function SellerPage() {
                     <tr> 
                         <th>No.</th>
                         <th>Customer Address</th>
-                        <th>License Exp Days</th>
+                        <th>License TC SWAP</th>
+                        <th>License TC SCAN</th>
+                        <th>License ETHER SWAP</th>
+                        <th>License ETHER SCAN</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    {customer.map((item, index)=> (
+                    {exp.map((item, index)=> (
                         <tr>
-                            <td>{index}</td>
-                            <td>{item}</td>
-                            <td>abc</td>
+                            <td className='text-center'>{index + 1}</td>
+                            <td className='text-center'>{customer[index]}</td>
+                            <td className='text-center'>{item["ScanPlus"]}</td>
+                            <td className='text-center'>{item["SwapPlus"]}</td>
+                            <td className='text-center'>{item["SwapPro"]}</td>
+                            <td className='text-center'>{item["ScanPro"]}</td>
                         </tr>
                     ))}
                 </tbody>
