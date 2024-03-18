@@ -36,6 +36,7 @@ function PageConfig() {
   const [input13, setInput13] = useState(['']);
   const [input14, setInput14] = useState(['']);
   const [input15, setInput15] = useState(['']);
+  const [moneyPending, setMoneyPending] = useState(ethers.BigNumber.from(0));
 
   const [balanceBNB, setBlanceBNB] = useState(0);
 
@@ -58,8 +59,8 @@ function PageConfig() {
           setHasRoleWithDraw(true)} else { setHasRoleWithDraw(false)}
         
         setWithdrawEnable(await addressContract.withdrawEnable());
-        setBlanceBNB(await provider.getBalance('0x674ADA902F96681cFA76dEf12221Ab20784A463E'))
-
+        setBlanceBNB(await provider.getBalance('0x2E4d1b0F1fD632130BeeF67C2d8B35Ce33C6522c'))
+        setMoneyPending(await addressContract.getTotalMoneyPendingSeller())
       }
       else {
        return;
@@ -158,6 +159,9 @@ function PageConfig() {
 
         }
       `}</style></div>
+      <div className="font-medium text-xl text-center text-blue-600 ">
+        Số Tiền Đang Pending cho Seller : {ethers.utils.formatEther(moneyPending)} BNB
+      </div>
       <div className={styles.grid}>
         <div className= {styles.card2}>
             <p>Set Serial TC SCAN</p>
