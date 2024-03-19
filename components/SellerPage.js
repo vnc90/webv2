@@ -29,7 +29,7 @@ function SellerPage() {
               ScanPro: expScanPro,
             };
           } catch (error) {
-            console.error('Error fetching expiration data for wallet ${wallet}: ${error}');
+            console.error(`Error fetching expiration data for wallet ${wallet}: ${error}`);
             return {
               ScanPlus: 'Error',
               SwapPlus: 'Error',
@@ -95,53 +95,30 @@ function SellerPage() {
 
     }
   }
-  
+   const calcuDay = (exp) => {
+    const currentTimeStampInSeconds = Math.floor(new Date().getTime() / 1000)
+    let day = (exp - currentTimeStampInSeconds)/86400;
+    console.log(day);
+    return day < 0 ? 0 : day.toFixed(1)
+  }
   async function getExpTCSCAN(wallet){
     const exp = await addressContract.getExpScan(wallet)
-    const currentTimeStampInSeconds = Math.floor(new Date().getTime() / 1000)
-    let day = (ethers.utils.formatUnits(exp) - currentTimeStampInSeconds)/86400;
-    if(day <0){
-        day = 0;
-    }else{{
-        day = day.toFixed(1)
-    }}
-    return day
+    return calcuDay(exp)
   }
 
   async function getExpTCSWAP(wallet){
     const exp = await addressContract.getExpSwap(wallet)
-    const currentTimeStampInSeconds = Math.floor(new Date().getTime() / 1000)
-    let day = (ethers.utils.formatUnits(exp) - currentTimeStampInSeconds)/86400;
-    if(day <0){
-        day = 0;
-    }else{{
-        day = day.toFixed(1)
-    }}
-    return day
+    return calcuDay(exp)
   }
 
   async function getExpSwapEthPro(wallet){
     const exp = await addressContract.getExpSwapEthPro(wallet)
-    const currentTimeStampInSeconds = Math.floor(new Date().getTime() / 1000)
-    let day = (ethers.utils.formatUnits(exp) - currentTimeStampInSeconds)/86400;
-    if(day <0){
-        day = 0;
-    }else{{
-        day = day.toFixed(1)
-    }}
-    return day
+    return calcuDay(exp)
   }
 
   async function getExpScanEthPro(wallet){
     const exp = await addressContract.getExpScanEthPro(wallet)
-    const currentTimeStampInSeconds = Math.floor(new Date().getTime() / 1000)
-    let day = (ethers.utils.formatUnits(exp) - currentTimeStampInSeconds)/86400;
-    if(day <0){
-        day = 0;
-    }else{{
-        day = day.toFixed(1)
-    }}
-    return day
+    return calcuDay(exp)
   }
   if(hasRoleWithDraw){
     if(withdrawEnable){
