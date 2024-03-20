@@ -20,31 +20,25 @@ export default function Home() {
         <MetaMaskButton />
         <div className="page-container">
           
-          <PriceAndBalances />
-        <style jsx>{`
-        .page-container {
-          margin-top: 10px;
-          display: flex;
-          justify-content: center; /* Center horizontally */
+          {/* <PriceAndBalances /> */}
 
-        }
-      `}</style>
         </div>  
         <div className='font-normal text-base'>
         <div className='border-t border-gray-300 mx-auto w-full m-5'></div>
-        <h1 className='font-medium text-xl'>ETHER SWAP PRO LICENSE:</h1>
-        <BuySwapEthPro/>
-        <h1 className='font-medium text-xl'>ETHER SCAN PRO LICENSE:</h1>
-        <BuyScanEthPro/>
-        <h1 className='font-medium text-xl'>BUY COMBO ETHER SCAN PRO + ETHER SWAP PRO:</h1>
-        <BuyComboEtherPro/>      
-        <div className='border-t border-blue-700 mx-auto w-full mb-3'></div>
         <h1 className='font-medium text-xl'>TC SCAN LICENSE:</h1> 
          <LoadLicenseScan/>
          <h1 className='font-medium text-xl'>TC SWAP LICENSE:</h1> 
         <LoadLicense/>
         <h1 className='font-medium text-xl'>BUY TC SCAN + SWAP BOT:</h1> 
         <LoadLicenseCombo/>
+        <div className='border-t border-blue-700 mx-auto w-full mb-3'></div>
+        <h1 className='font-medium text-xl'>ETHER SWAP PRO LICENSE:</h1>
+        <BuySwapEthPro/>
+        <h1 className='font-medium text-xl'>ETHER SCAN PRO LICENSE:</h1>
+        <BuyScanEthPro/>
+        <h1 className='font-medium text-xl'>BUY COMBO ETHER SCAN PRO + ETHER SWAP PRO:</h1>
+        <BuyComboEtherPro/>      
+        
         <div className='border-t border-blue-700 mx-auto w-full mb-3'></div>
         <h1 className='font-medium text-xl'>Tools: </h1>
          <Tools />

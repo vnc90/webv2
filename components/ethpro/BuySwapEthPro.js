@@ -67,6 +67,12 @@ function BuySwapEthPro() {
   }
 
   return (
+    <>
+    <div className="flex justify-left mx-auto w-full px-3 text-medium font-light mt-3">
+      <div className='w-full'>
+        <li>Savings combo when buying swap and scan bot</li>
+    </div>
+    </div>
     <div className={styles.card}>
     <p className= {styles.columeL}>Time remaining: {expSwap} days</p>
     <div className={styles.colume}>
@@ -74,7 +80,7 @@ function BuySwapEthPro() {
             {loading ? 'Buying...' : 'Buy 30 Days'}
               </button>
         </div>
-    </div>
+    </div></>
   );
 }
 

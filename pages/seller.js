@@ -16,10 +16,10 @@ export default function admin() {
       </Head>
       <section className={utilStyles.headingMd}>
         <MetaMaskButton />
-        <div className="flex mt-[10px] justify-center">
+        {/* <div className="flex mt-[10px] justify-center">
           
           <PriceAndBalances />
-        </div>     
+        </div>      */}
     </section>
     <div className="border-t mt-4"></div>
     <SellerPage/>

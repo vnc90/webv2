@@ -68,6 +68,15 @@ function LoadLicense() {
   }
 
   return (
+    <>
+    <div className="flex justify-left mx-auto w-full px-3 text-medium font-light mt-3">
+      <div className='w-2/5'>
+        <li>SWAP token on BSC/Ethereum</li>
+        <li>Trading on Uniswap V2 and PancakeSwap V2</li>
+        <li>Optimal performance interface for traders</li>
+        <li>Fast Buy, Fast Sell</li>
+    </div>
+    </div>
     <div className={styles.card}>
     <p className= {styles.columeL}>Time remaining: {expSwap} days</p>
     <div className={styles.colume}>
@@ -76,6 +85,7 @@ function LoadLicense() {
               </button>
         </div>
     </div>
+    </>
   );
 }
 

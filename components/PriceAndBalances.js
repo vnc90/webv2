@@ -7,12 +7,16 @@ import { useEthereum } from '../context/EthereumContext';
 function PriceAndBalances () {
 
     const { provider, walletAddress, addressContract,reloadTotal, setReloadTotal } = useEthereum();
-    const [priceSwap, setPriceSwap] = useState(ethers.BigNumber.from('350000000000000000'));
-    const [priceCombo, setPriceCombo] = useState(ethers.BigNumber.from('1500000000000000000'));
+    const [priceSwap, setPriceSwap] = useState(ethers.BigNumber.from('0'));
+    const [priceCombo, setPriceCombo] = useState(ethers.BigNumber.from('0'));
     const [balance, setBalance] = useState(0);
-    const [priceScan1, setPriceScan1] = useState(ethers.BigNumber.from('500000000000000000'));
-    const [priceScan2, setPriceScan2] = useState(ethers.BigNumber.from('1000000000000000000'));
-    const [priceScan3, setPriceScan3] = useState(ethers.BigNumber.from('1300000000000000000'));
+    const [priceScan1, setPriceScan1] = useState(ethers.BigNumber.from('0'));
+    const [priceScan2, setPriceScan2] = useState(ethers.BigNumber.from('0'));
+    const [priceScan3, setPriceScan3] = useState(ethers.BigNumber.from('0'));
+    const [priceSwapPro, setPriceSwapPro] = useState(ethers.BigNumber.from('0'));
+    const [priceScanPro, setPriceScanPro] = useState(ethers.BigNumber.from('0'));
+    const [comboPro, setComboPro] = useState(ethers.BigNumber.from('0'));
+
 
 
     useEffect(() => {
@@ -26,6 +30,9 @@ function PriceAndBalances () {
             setPriceScan3(priceScan[2])
             setPriceSwap(await addressContract.getPriceSwap())
             setPriceCombo(await addressContract.getPriceCombo())
+            setComboPro(await addressContract.getPriceComboEthPro())
+            setPriceScanPro(await addressContract.getPriceScanEthPro())
+            setPriceSwapPro(await addressContract.getPriceSwapEthPro())
 
             
           }
@@ -45,25 +52,37 @@ function PriceAndBalances () {
                     <td>{ parseFloat(ethers.utils.formatUnits( balance)).toFixed(2)} BNB</td>
                 </tr>
                 <tr>
-                    <td>30-day price of SWAP BOT</td>
+                    <td>TC SWAP</td>
                     <td>{ethers.utils.formatUnits(priceSwap)} BNB</td>
                 </tr>
                 <tr>
-                    <td>30-day price of VIP1 SCAN BOT</td>
+                    <td>TC SCAN - Vip 1</td>
                     <td>{ethers.utils.formatUnits(priceScan1)} BNB</td>
                 </tr>
                 <tr>
-                    <td>30-day price of VIP2 SCAN BOT</td>
+                    <td>TC SCAN - Vip 2</td>
                     <td>{ethers.utils.formatUnits(priceScan2)} BNB</td>
                 </tr>
                 <tr>
-                    <td>30-day price of SuperVip SCAN BOT</td>
+                    <td>TC SCAN - Supper Vip</td>
                     <td>{ethers.utils.formatUnits(priceScan3)} BNB</td>
                 </tr>
                 
                 <tr>
-                    <td>30-day price of SuperVip SCAN + SWAP BOT</td>
+                    <td>COMBO TC SCAN - SVip + SWAP </td>
                     <td>{ethers.utils.formatUnits(priceCombo)} BNB</td>
+                </tr>
+                <tr>
+                    <td>Scan ETH Pro</td>
+                    <td>{ethers.utils.formatUnits(priceScanPro)} BNB</td>
+                </tr>
+                <tr>
+                    <td>Swap ETH Pro</td>
+                    <td>{ethers.utils.formatUnits(priceSwapPro)} BNB</td>
+                </tr>
+                <tr>
+                    <td>COMBO SCAN SWAP ETH Pro</td>
+                    <td>{ethers.utils.formatUnits(comboPro)} BNB</td>
                 </tr>
                 </tbody>
                 <style jsx>{`
@@ -74,7 +93,7 @@ function PriceAndBalances () {
         }
 
         td {
-          text-align: center;
+          text-align: left;
           padding: 10px;
           border: 1px solid #dddddd;
         }

@@ -17,16 +17,9 @@ export default function admin() {
       <section className={utilStyles.headingMd}>
         <MetaMaskButton />
         <div className="page-container">
-          
-          <PriceAndBalances />
-        <style jsx>{`
-        .page-container {
-          margin-top: 10px;
-          display: flex;
-          justify-content: center; /* Center horizontally */
+{/*           
+          <PriceAndBalances /> */}
 
-        }
-      `}</style>
         </div>     
         <PageConfig/>
 

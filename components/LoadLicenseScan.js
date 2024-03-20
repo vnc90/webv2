@@ -190,6 +190,21 @@ function LoadLicense() {
       tempSeriNumber = value;
   }
   return (
+    <>
+    <div className="flex justify-center mx-auto w-full px-3 text-medium font-light mt-3">
+      <div className='w-2/5'>
+        <li>Scan token on BSC/Ethereum</li>
+        <li>Tracking token/Wallet on BSC/Ethereum</li>
+        <li>Tracking Wallet on BSC/Ethereum</li>
+        
+      </div>
+      <div className='w-3/5'>
+        <li>VIP1 : 30s/24s scan on BSC/ETH, 15 Token,15 wallet tracking </li>
+        <li>VIP2 : 15s/24s scan on BSC/ETH, 15 Token, 30 wallet tracking </li>
+        <li>SuperVIP : 15s/12s scan on BSC/ETH Unlimited Token, wallet tracking </li>
+
+      </div>
+    </div>
     <div className={styles.card}>
         <div className={styles.columeL}>
         {seriNumber ? 
@@ -217,7 +232,7 @@ function LoadLicense() {
         </div>
      
      
-    </div>
+    </div></>
   );
 }
 

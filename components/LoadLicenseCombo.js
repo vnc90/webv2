@@ -79,6 +79,12 @@ function LoadLicense() {
     tempSeriNumber = value;
   }
   return (
+    <>
+        <div className="flex justify-left mx-auto w-full px-3 text-medium font-light mt-3">
+      <div className='w-full'>
+        <li>Savings combo when buying swap and scan bot</li>
+    </div>
+    </div>
     <div className={styles.card}>
         <div className={styles.columeL}>
         {seriNumber ? 
@@ -97,7 +103,7 @@ function LoadLicense() {
         </div>
      
      
-    </div>
+    </div></>
   );
 }
 

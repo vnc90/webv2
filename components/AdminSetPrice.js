@@ -59,7 +59,7 @@ function PageConfig() {
           setHasRoleWithDraw(true)} else { setHasRoleWithDraw(false)}
         
         setWithdrawEnable(await addressContract.withdrawEnable());
-        setBlanceBNB(await provider.getBalance('0xf9734DAb975debaE20853EC2Cbd800F16417D11F'))
+        setBlanceBNB(await provider.getBalance('0xa92D7f42A1B712885D79cdcCc7A5C5dC3Bc48f44'))
         setMoneyPending(await addressContract.getTotalMoneyPendingSeller())
       }
       else {
